@@ -183,14 +183,11 @@ class ImportBancosCadastro extends jnControleCadastro {
 				// 				se tiver os 8 campos certinho e outras comparaçoes ira salvar na tabela
 			if ($novoCount >= 7 && $valor [1] != 'COSIF' && $ext == 'xls') {
 // 				remover os pontos e inserir a ',' para o DOUBLE PRECISION
-				$valor [6] = str_replace('.', '', $valor [6]);
-				$valor [7] = str_replace('.', '', $valor [7]);
-				$valor [9] = str_replace('.', '', $valor [9]);
-				$valor [10] = str_replace('.', '', $valor [10]);
-				$valor [6] = str_replace('', ',', $valor [6]);
-				$valor [7] = str_replace('', ',', $valor [7]);
-				$valor [9] = str_replace('', ',', $valor [9]);
-				$valor [10] = str_replace('', ',', $valor [10]);
+				$chaveCampo = array(6,7,9,10);
+				foreach ($chaveCampo as $chave){
+					$valor [$chave] = str_replace('.', '', $valor [$chave]);
+					$valor [$chave] = str_replace(',', '.', $valor [$chave]);
+				}
 // 					verifica se ja foi repedido os falores se "sim" nao salva se "nao" ele salva 
 				if (! $impDAO->getDadoBanco ( $imb_banco, $datas [0], $datas [1], $valor [1], $valor [2], $valor [3], $valor [4], $valor [6], $valor [7], $valor [9], $valor [10] )) {
 // 						salva na tabel e ja recebe se deu certo ou nao e armazena na array msg
@@ -205,14 +202,11 @@ class ImportBancosCadastro extends jnControleCadastro {
 // 				se tiver os 8 campos certinho e outras comparaçoes ira salvar na tabela
 			if ($novoCount >= 7 && $coluna != 'COSIF' && $ext == 'xlsx' && $valor [1]) {
 // 				remover os pontos e inserir a ',' para o DOUBLE PRECISION
-				$valor [5] = str_replace('.', '', $valor [5]);
-				$valor [6] = str_replace('.', '', $valor [6]);
-				$valor [8] = str_replace('.', '', $valor [8]);
-				$valor [9] = str_replace('.', '', $valor [9]);
-				$valor [5] = str_replace(',', '.', $valor [5]);
-				$valor [6] = str_replace(',', '.', $valor [6]);
-				$valor [8] = str_replace(',', '.', $valor [8]);
-				$valor [9] = str_replace(',', '.', $valor [9]);
+				$chaveCampo = array(5,6,8,9);
+				foreach ($chaveCampo as $chave){
+					$valor [$chave] = str_replace('.', '', $valor [$chave]);
+					$valor [$chave] = str_replace(',', '.', $valor [$chave]);
+				}
 // 					verifica se ja foi repedido os falores se "sim" nao salva se "nao" ele salva 
 				if (! $impDAO->getDadoBanco ( $imb_banco, $datas [0], $datas [1], $valor [0], $valor [1], $valor [2], $valor [3], $valor [5], $valor [6], $valor [8], $valor [9] )) {
 // 						salva na tabel e ja recebe se deu certo ou nao e armazena na array msg
