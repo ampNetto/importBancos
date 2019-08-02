@@ -1,0 +1,16 @@
+CREATE TABLE public.cosif
+(
+  imb_id SERIAL PRIMARY KEY,
+  banc_id  INTEGER,
+  imb_ano  INTEGER,
+  imb_mes  INTEGER,
+  imb_cod_cosif VARCHAR,
+  imb_desc_cosif VARCHAR,
+  imb_cod_rubrica VARCHAR,
+  imb_desc_rubrica VARCHAR,
+  imb_saldo_anterior DOUBLE PRECISION,
+  imb_debito DOUBLE PRECISION,
+  imb_credito DOUBLE PRECISION,
+  imb_saldo_atual DOUBLE PRECISION,
+  FOREIGN KEY (banc_id) REFERENCES financas.banco(banc_id)
+)
